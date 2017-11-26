@@ -1,0 +1,144 @@
+doctype html
+html(lang='en')
+  head
+    meta(http-equiv='content-type', content='text/html; charset=UTF-8')
+    meta(charset='utf-8')
+    title=title
+    meta(name='generator', content='Bootply')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+  body
+    header(class=['navbar', 'navbar-bright', 'navbar-fixed-top'], role='banner')
+      div(class='container')
+        div(class='navbar-header')
+          button(class='navbar-toggle', type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span(class='sr-only') Toggle navigation
+            span(class='icon-bar')
+            span(class='icon-bar')
+            span(class='icon-bar')
+          a(href='/', class='navbar-brand') Home
+        nav(class=['collapse', 'navbar-collapse'], role='navigation')
+          ul(class=['nav', 'navbar-nav'])
+            each item in nav
+              li
+                a(href=item.link)=item.text
+
+          ul(class=['nav', 'navbar-right', 'navbar-nav'])
+            if isLoggedIn
+              li
+                a(href='/auth/logout') Log Out
+            else
+              li
+                a(href='/') Login
+            li(class='dropdown')
+              a(href='#', class='dropdown-toggle', data-toggle='dropdown')
+                i.fa.fa-search
+              ul(class='dropdown-menu', style='padding:12px;')
+                form(class='form-inline')
+                  button(type='submit', class=['btn', 'btn-default', 'pull-right'])
+                    i.fa.fa-search
+                  input(type='text', class=['form-control', 'pull-left'], placeholder='Search')
+
+    div(id='masthead')
+      div(class='container')
+        div(class='row')
+          div(class='col-md-7')
+            h1 Library App
+              p(class='lead')
+
+          div(class='col-md-5')
+            div(class='well well-lg')
+              div(class='row')
+                div(class='col-sm-12')
+
+      div(class='container')
+        div(class='row')
+          div(class='col-md-12')
+            div(class='top-spacer')
+
+    div(class='container')
+      div(class='row')
+        div(class='col-md-12')
+          div(class='card')
+            div(class='card-body')
+              if isLoggedIn
+                div(class='row')
+                  div(class='col-sm-1')
+                  div(class='col-sm-4')
+                    h3(class='card-title')= 'Hi ' + user.username.substr(0, 1).toUpperCase() + user.username.substr(1) + '!'
+                    p Welcome to your local library.
+                    br
+                    a(class=['btn', 'btn-primary'], href='/books') Browse
+              else
+                div(class='row')
+                  div(class='col-sm-4')
+                    div(class='card')
+                      div(class='card-body')
+                        h3(class='card-title') Log In
+                        br
+                        form(action='/auth/login', method='post')
+                          div(class=['form-group', 'row'])
+                            div(class='col-sm-8')
+                              input(class='form-control', type='text', name='userName', placeholder='Username')
+                          div(class=['form-group', 'row'])
+                            div(class='col-sm-8')
+                              input(class='form-control', type='password', name='password', placeholder='Password')
+                          div(class=['form-group', 'row'])
+                            div(class='col-sm-10')
+                              button(type='submit', class=['btn', 'btn-primary']) Login
+                  div(class='col-sm-1', style={'border-left': '1px solid #ddd', 'height': '200px'})
+                  div(class='col-sm-4')
+                    div(class='card')
+                      div(class='card-body')
+                        h3(class='card-title') Register
+                        br
+                        form(action='/auth/register', method='post')
+                          div(class=['form-group', 'row'])
+                            div(class='col-sm-8')
+                              input(class='form-control', type='text', name='userName', placeholder='Username')
+                          div(class=['form-group', 'row'])
+                            div(class='col-sm-8')
+                              input(class='form-control', type='password', name='password', placeholder='Password')
+                          div(class=['form-group', 'row'])
+                            div(class='col-sm-10')
+                              button(type='submit', class=['btn', 'btn-success']) Register
+
+              != '<br/><br/>'
+
+    hr
+
+    div(class='container', id='footer')
+      div(class='row')
+        div(class=['col', 'col-sm-12'])
+          h1 Follow Us
+          div(class='btn-group')
+            a(class=['btn', 'btn-twitter', 'btn-lg'], href='#')
+              i.fa.fa-twitter.fa-lg
+              = ' Twitter'
+            a(class=['btn', 'btn-facebook', 'btn-lg'], href='#')
+              i.fa.fa-facebook.fa-lg
+              = ' Facebook'
+            a(class=['btn', 'btn-google-plus', 'btn-lg'], href='#')
+              i.fa.fa-google-plus.fa-lg
+              = ' Google+'
+    != '<hr /><hr />'
+
+    footer
+      div(class='container')
+        div(class='row')
+          div(class='col-sm-6')
+            ul(class='list-inline')
+              li
+                i.fa.fa-facebook.fa-2x
+              li
+                i.fa.fa-twitter.fa-2x
+              li
+                i.fa.fa-google-plus.fa-2x
+              li
+                i.fa.fa-pinterest.fa-2x
+
+          div(class='col-sm-6')
+            p(class='pull-right') Built with 
+              i.fa.fa-heart-o 
+              = ' at '
+              a(href='http://www.bootply.com') Bootply
+    script(src='/bundle.js')
