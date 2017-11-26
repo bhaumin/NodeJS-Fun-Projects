@@ -21,4 +21,4 @@ A simple server side web application developed using NodeJS, Express, Jade and M
 * And, last but not the least, how awesome is [Font Awesome](http://fontawesome.io/)?
 
 ## 3rd Party
-Using the [www.goodreads.com](https://www.goodreads.com/api)'s API to display a book's metadata
+Using the [www.goodreads.com](https://www.goodreads.com/api)'s API to display book's metadata
