@@ -47,7 +47,7 @@ module.exports = {
             options: {
               name: '[name].[ext]',
               outputPath: 'svg/',
-              publicPath: '/',
+              publicPath: '/svg',
             }
           }
         ]
@@ -60,7 +60,7 @@ module.exports = {
             options: {
               name: '[name].[ext]',
               outputPath: 'fonts/',
-              publicPath: '/',
+              publicPath: '/fonts',
             }
           }
         ]
