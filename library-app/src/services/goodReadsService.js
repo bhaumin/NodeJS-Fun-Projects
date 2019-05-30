@@ -1,18 +1,18 @@
-var request = require('request');
-var parser = require('xml2json');
+const request = require('request');
+const parser = require('xml2json');
 
-var goodReadsService = function() {
+const goodReadsService = function() {
 
-  var goodReadsApiKey = 'vCRbL7RQHSj7tpBkPbRJQ';
+  const goodReadsApiKey = 'vCRbL7RQHSj7tpBkPbRJQ';
 
-  var getBookMetaDataById = function(id, cb) {
+  const getBookMetaDataById = function(id, cb) {
 
-    var url = `http://www.goodreads.com/book/show/${id}/?key=${goodReadsApiKey}`;
+    const url = `http://www.goodreads.com/book/show/${id}/?key=${goodReadsApiKey}`;
 
     request(url, function (error, response, body) {
       if (response && response.statusCode == 200) {
-        var rawJsonData = parser.toJson(body);
-        var data = JSON.parse(rawJsonData);
+        const rawJsonData = parser.toJson(body);
+        const data = JSON.parse(rawJsonData);
 
         cb(null, {image_url: data.GoodreadsResponse.book.image_url, description: data.GoodreadsResponse.book.description });
       } else {
@@ -22,10 +22,10 @@ var goodReadsService = function() {
 
   };
 
-  var getBookMetaDataMultiBooks = function(books, cb) {
+  const getBookMetaDataMultiBooks = function(books, cb) {
 
     // Initialize this with all books first, and then remove as it is retrieved
-    var booksRemaining = books.map((b, i) => {
+    const booksRemaining = books.map((b, i) => {
       return {
         [i]: b.bookId
       };
@@ -36,12 +36,12 @@ var goodReadsService = function() {
     // all the books metadata via an offline batch task, so at runtime we are rendering it directly.
     books.forEach(function(book, i) {
       (function(j) {
-        var url = `http://www.goodreads.com/book/show/${book.bookId}/?key=${goodReadsApiKey}`;
+        const url = `http://www.goodreads.com/book/show/${book.bookId}/?key=${goodReadsApiKey}`;
         request(url, function (error, response, body) {
           if (response && response.statusCode == 200) {
-            var rawJsonData = parser.toJson(body);
-            var data = JSON.parse(rawJsonData);
-            var meta = {
+            const rawJsonData = parser.toJson(body);
+            const data = JSON.parse(rawJsonData);
+            const meta = {
               image_url: data.GoodreadsResponse.book.image_url,
               description: data.GoodreadsResponse.book.description
             };
