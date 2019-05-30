@@ -1,6 +1,6 @@
-var passport = require('passport');
+const passport = require('passport');
 
-module.exports = function(app, mongodb, connStr) {
+module.exports = function(app, mongoClient, dbName) {
   app.use(passport.initialize());
   app.use(passport.session());
 
@@ -12,5 +12,5 @@ module.exports = function(app, mongodb, connStr) {
     done(null, user);
   });
 
-  require('./strategies/local.strategy')(mongodb, connStr, passport);
+  require('./strategies/local.strategy')(mongoClient, dbName, passport);
 };

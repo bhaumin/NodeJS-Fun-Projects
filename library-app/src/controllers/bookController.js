@@ -1,16 +1,16 @@
+const bookController = function(mongoClient, dbName, objectId, navs, bookService) {
 
-var bookController = function(mongodb, connStr, objectId, navs, bookService) {
-
-  var middleware = function(req, res, next) {
+  const middleware = function(req, res, next) {
     // if (!req.isAuthenticated()) {
     //   res.redirect('/');
     // }
     next();
   };
 
-  var getBooks = function(req, res) {
-    mongodb.connect(connStr, function(err, db) {
-      var collection = db.collection('books');
+  const getBooks = function(req, res) {
+    mongoClient.connect(function(err, client) {
+      const db = client.db(dbName);
+      const collection = db.collection('books');
       collection.find({}).toArray(function(err, results) {
 
         bookService.getBookMetaDataMultiBooks(results, function(err, resultsWithMeta) {
@@ -26,16 +26,15 @@ var bookController = function(mongodb, connStr, objectId, navs, bookService) {
             books: resultsWithMeta,
           });
         });
-
-        db.close();
       });
     });
   };
 
-  var getBookById = function(req, res) {
-    var id = new objectId(req.params.id);
-    mongodb.connect(connStr, function(err, db) {
-      var collection = db.collection('books');
+  const getBookById = function(req, res) {
+    const id = new objectId(req.params.id);
+    mongoClient.connect(function(err, client) {
+      const db = client.db(dbName);
+      const collection = db.collection('books');
       collection.findOne({_id: id}, function(err, result) {
 
         bookService.getBookMetaDataById(result.bookId, function(err, meta) {
@@ -51,8 +50,6 @@ var bookController = function(mongodb, connStr, objectId, navs, bookService) {
             book: result,
           });
         });
-
-        db.close();
       });
     });
   };

@@ -1,9 +1,9 @@
-var express = require('express');
-var bookRouter = express.Router();
+const express = require('express');
+const bookRouter = express.Router();
 
-var router = function(mongodb, connStr, objectId, navs) {
-  var bookService = require('../services/goodReadsService')();
-  var bookController = require('../controllers/bookController')(mongodb, connStr, objectId, navs, bookService);
+const router = function(mongoClient, dbName, objectId, navs) {
+  const bookService = require('../services/goodReadsService')();
+  const bookController = require('../controllers/bookController')(mongoClient, dbName, objectId, navs, bookService);
 
   bookRouter.use(bookController.middleware);
 

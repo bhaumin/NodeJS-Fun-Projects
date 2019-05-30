@@ -1,9 +1,9 @@
-var express = require('express');
-var adminRouter = express.Router();
+const express = require('express');
+const adminRouter = express.Router();
 
-var router = function(mongodb, connStr) {
+const router = function(mongoClient, dbName) {
 
-  var navs = [
+  const navs = [
     {
       link: '/books',
       text: 'Books'
@@ -14,7 +14,7 @@ var router = function(mongodb, connStr) {
     }
   ];
 
-  var books = [
+  const books = [
     {
       title : 'War and Peace',
       genre: 'Historical Fiction',
@@ -55,22 +55,22 @@ var router = function(mongodb, connStr) {
   // Routes
   adminRouter.route('/addNavs')
     .get(function(req, res) {
-      mongodb.connect(connStr, function(err, db) {
-        var collection = db.collection('navs');
+      mongoClient.connect(function(err, client) {
+        const db = client.db(dbName);
+        const collection = db.collection('navs');
         collection.insertMany(navs, function(err, results) {
           res.send(results);
-          db.close();
         });
       });
     });
 
   adminRouter.route('/addBooks')
     .get(function(req, res) {
-      mongodb.connect(connStr, function(err, db) {
-        var collection = db.collection('books');
+      mongoClient.connect(function(err, client) {
+        const db = client.db(dbName);
+        const collection = db.collection('books');
         collection.insertMany(books, function(err, results) {
           res.send(results);
-          db.close();
         });
       });
     });

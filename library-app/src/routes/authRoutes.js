@@ -1,18 +1,19 @@
-var express = require('express');
-var passport = require('passport');
-var authRouter = express.Router();
+const express = require('express');
+const passport = require('passport');
+const authRouter = express.Router();
 
-var router = function(mongodb, connStr) {
+const router = function(mongoClient, dbName) {
 
   authRouter.route('/register')
     .post(function(req, res) {
-      mongodb.connect(connStr, function(err, db) {
-        var user = {
+      mongoClient.connect(function(err, client) {
+        const user = {
           username: req.body.userName,
           password: req.body.password
         };
 
-        var collection = db.collection('users');
+        const db = client.db(dbName);
+        const collection = db.collection('users');
         collection.insert(user, function(err, results) {
           req.login(results.ops[0], function() {
             res.redirect('/');
