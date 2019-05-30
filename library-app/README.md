@@ -1,5 +1,5 @@
 # Library App
-A simple server side web application developed using NodeJS, Express, Jade and MongoDB.
+A simple server side web application developed using NodeJS, Express, Pug and MongoDB.
 
 ## Requirements
 * Node.js
@@ -11,14 +11,14 @@ A simple server side web application developed using NodeJS, Express, Jade and M
 * Start the web server with `npm start`. Default port = 3000.
 * Open `http://localhost:3000/` in your favorite browser
 
-## Key Features
+## Implementation Notes - Framework/tools used
 * Routes (get/post)
-* Data driven UI enabled by [Jade](http://jade-lang.com/) templating engine
+* Data driven UI enabled by [Pug](http://pugjs.org/) templating engine
 * Login / Logout (local authentication)
 * Route level authorization
 * State saved persistently in MongoDB, using the native MongoDB [driver](https://www.npmjs.com/package/mongodb)
-* All packaging cleanly handled using [npm](https://www.npmjs.com/) and [webpack](https://webpack.github.io/). Good Bye Grunt/Gulp/Bower!
-* And, last but not the least, how awesome is [Font Awesome](http://fontawesome.io/)?
+* [Font Awesome](http://fontawesome.io/)?
+* All packaging cleanly handled using [npm](https://www.npmjs.com/) and [webpack](https://webpack.github.io/). No Grunt/Gulp/Bower!
 
 ## 3rd Party
 Using the [www.goodreads.com](https://www.goodreads.com/api)'s API to display book's metadata
