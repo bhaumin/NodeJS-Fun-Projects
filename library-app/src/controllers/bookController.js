@@ -15,7 +15,12 @@ const bookController = function(mongoClient, dbName, objectId, navs, bookService
 
         bookService.getBookMetaDataMultiBooks(results, function(err, resultsWithMeta) {
           if (err) {
+            // console.log(err);
             resultsWithMeta = results;
+            resultsWithMeta.meta = {
+              'image_url': '',
+              'description': ''
+            };
           }
 
           res.render('bookListView', {
