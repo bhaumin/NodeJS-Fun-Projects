@@ -17,7 +17,7 @@ A simple server side web application developed using NodeJS, Express, Pug and Mo
 * Login / Logout (local authentication)
 * Route level authorization
 * State saved persistently in MongoDB, using the native MongoDB [driver](https://www.npmjs.com/package/mongodb)
-* [Font Awesome](http://fontawesome.io/)?
+* [Font Awesome](http://fontawesome.io/)
 * All packaging cleanly handled using [npm](https://www.npmjs.com/) and [webpack](https://webpack.github.io/). No Grunt/Gulp/Bower!
 
 ## 3rd Party
