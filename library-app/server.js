@@ -5,7 +5,7 @@ const session = require('express-session');
 const connStr = 'mongodb://localhost:27017';
 const dbName = 'libraryApp';
 
-const client = new MongoClient(connStr, { useNewUrlParser: true });
+const client = new MongoClient(connStr, { useNewUrlParser: true, useUnifiedTopology: true });
 
 client.connect(function(err, client) {
   const db = client.db(dbName);
